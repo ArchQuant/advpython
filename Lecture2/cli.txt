@@ -1,0 +1,39 @@
+### Compile pyx using distutils (setuptools after Python 3.12)
+python setup.py build_ext --inplace
+
+### Compile pyx using pyximport
+python pyximport_compile.py
+
+### Compile using cythonmagic extensions
+See notebook
+
+## Sharing declarations
+Comment lines in mathlib.pxd
+python setup.py build_ext --inplace
+Then uncomment and rerun the command
+
+### Profiling Cython
+cython -a ~/PycharmProjects/advpython/Lecture2/cevolve.pyx
+open the html
+
+### PyPy
+./pypy3.10-v7.3.17-macos_arm64/bin/pypy -m ensurepip
+./pypy3.10-v7.3.17-macos_arm64/bin/pypy -m pip install virtualenv
+./pypy3.10-v7.3.17-macos_arm64/bin/virtualenv my-pypy-env
+source my-pypy-env/bin/activate
+python -V
+
+pip install numpy matplotlib
+python -m pip install pyperf
+
+pypy3 -m pip install cython
+pypy3 setup.py build_ext --inplace
+
+python -m timeit --setup "from simul import benchmark" "benchmark()"
+python -m perf timeit --setup "from simul import benchmark" "benchmark()"
+python -m pyperf timeit --setup 'from simul import benchmark' 'benchmark()'
+
+
+
+
+
